@@ -19,7 +19,7 @@ namespace TemplateText {
                 args[1],
                 (new Regex(@"\<(?<x>.{0,32}?)\[(?<key>.{0,99}?)\]\k<x>\>", RegexOptions.Compiled | RegexOptions.ExplicitCapture | RegexOptions.CultureInvariant)).Replace(
                     File.ReadAllText(args[0]),
-                    m => keyvalue.TryGetValue(m.Groups["key"].Value, out var value) ? value : null)
+                    m => keyvalue.TryGetValue(m.Groups["key"].Value, out var value) ? value : m.Value)
             );
         }
     }
